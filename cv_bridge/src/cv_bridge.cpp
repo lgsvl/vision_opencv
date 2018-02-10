@@ -36,7 +36,6 @@
 #include "boost/endian/conversion.hpp"
 
 #include <map>
-
 #include <memory>
 #include <boost/regex.hpp>
 
