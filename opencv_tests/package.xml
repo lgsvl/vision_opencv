@@ -9,7 +9,13 @@
   <license>BSD</license>
   <url>http://wiki.ros.org/opencv_tests</url>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 
-  <run_depend>cv_bridge</run_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
 </package>

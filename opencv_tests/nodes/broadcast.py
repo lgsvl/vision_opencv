@@ -35,7 +35,7 @@
 import sys
 import time
 import math
-import rospy
+import rclpy
 import cv2
 
 import sensor_msgs.msg
