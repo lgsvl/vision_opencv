@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-import rostest
+!/usr/bin/env python
 import unittest
 
 import numpy as np
@@ -45,3 +44,7 @@ class TestEnumerants(unittest.TestCase):
 
 if __name__ == '__main__':
     rosunit.unitrun('opencv_tests', 'enumerants', TestEnumerants)
+    suite = unittest.TestSuite()
+    suite.addTest(TestEnumerants('test_enumerants_cv2'))
+    suite.addTest(TestEnumerants('test_numpy_types'))
+    unittest.TextTestRunner(verbosity=2).run(suite)

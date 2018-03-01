@@ -1,12 +1,10 @@
 # add library
-include_directories(./)
-add_library(${PROJECT_NAME}
-  cv_bridge.cpp rgb_colors.cpp)
+add_library(${PROJECT_NAME} cv_bridge.cpp rgb_colors.cpp)
 ament_target_dependencies(${PROJECT_NAME}
   "OpenCV"
   "sensor_msgs"
 )
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 
@@ -28,7 +26,7 @@ if(NOT PYTHON_NUMPY_INCLUDE_DIR)
     else(PYTHON_NUMPY_PROCESS EQUAL 0)
         message(SEND_ERROR "Could not determine the NumPy include directory, verify that NumPy was installed correctly.")
     endif(PYTHON_NUMPY_PROCESS EQUAL 0)
- endif(NOT PYTHON_NUMPY_INCLUDE_DIR)
+endif(NOT PYTHON_NUMPY_INCLUDE_DIR)
 
 include_directories(${PYTHON_INCLUDE_PATH} ${PYTHON_NUMPY_INCLUDE_DIR})
 

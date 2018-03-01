@@ -20,7 +20,7 @@ if(NOT ANDROID)
     find_package(Boost REQUIRED python3)
   endif()
 else()
-  find_package(Boost REQUIRED)
+  find_package(Boost REQUIRED )
 endif()
 
 find_package(sensor_msgs REQUIRED)
@@ -50,14 +50,16 @@ if(BUILD_TESTING)
   add_subdirectory(test)
 endif()
 
+ament_export_dependencies(OpenCV)
+
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+
 # install the include folder
 install(
   DIRECTORY include/${PROJECT_NAME}/
   DESTINATION include/${PROJECT_NAME}
 )
-ament_export_libraries(${PROJECT_NAME})
-ament_export_dependencies(OpenCV)
-ament_export_include_directories(include)
 
 ament_package(
   CONFIG_EXTRAS "cmake/cv_bridge-extras.cmake.in"
