@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 import unittest
 
 import numpy as np
@@ -86,3 +86,4 @@ if __name__ == '__main__':
     suite.addTest(TestConversions('test_encode_decode_cv2'))
     suite.addTest(TestConversions('test_encode_decode_cv2_compressed'))
     suite.addTest(TestConversions('test_endianness'))
+    unittest.TextTestRunner(verbosity=2).run(suite)
