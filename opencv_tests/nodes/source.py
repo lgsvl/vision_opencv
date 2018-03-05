@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 # Software License Agreement (BSD License)
 #
 # Copyright (c) 2008, Willow Garage, Inc.
@@ -44,28 +44,29 @@ from cv_bridge import CvBridge
 
 
 # Send black pic with a circle as regular and compressed ros msgs.
-def main(args):
+def main(args=None):
+    if args is None:
+        args = sys.argv
     rclpy.init(args=args)
-
     node = rclpy.create_node("Source")
     node_logger = node.get_logger()
 
     pub_img = node.create_publisher(sensor_msgs.msg.Image, "/opencv_tests/images")
     pub_compressed_img = node.create_publisher(sensor_msgs.msg.CompressedImage, "/opencv_tests/images/compressed")
 
+    time.sleep(1.0)
+    started = time.time()
+    counter = 0
+    cvim = numpy.zeros((480, 640, 1), numpy.uint8)
+    ball_xv = 10
+    ball_yv = 10
+    ball_x = 100
+    ball_y = 100
+
+    cvb = CvBridge()
+
     while rclpy.ok():
       try:
-        time.sleep(1.0)
-        started = time.time()
-        counter = 0
-        cvim = numpy.zeros((480, 640, 1), numpy.uint8)
-        ball_xv = 10
-        ball_yv = 10
-        ball_x = 100
-        ball_y = 100
-
-        cvb = CvBridge()
-
         cvim.fill(0)
         cv2.circle(cvim, (ball_x, ball_y), 10, 255, -1)
 
@@ -81,10 +82,11 @@ def main(args):
         time.sleep(0.03)
       except KeyboardInterrupt:
         node_logger.info("shutting down: keyboard interrupt")
+        break
 
     node_logger.info("test_completed")
     node.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
