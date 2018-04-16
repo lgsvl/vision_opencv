@@ -1,36 +1,53 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
+
 project(image_geometry)
 
-find_package(catkin REQUIRED sensor_msgs)
+find_package(ament_cmake REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
-catkin_package(CATKIN_DEPENDS sensor_msgs
-               DEPENDS OpenCV
-               INCLUDE_DIRS include
-               LIBRARIES ${PROJECT_NAME}
-)
+if(NOT CMAKE_CXX_STANDARD)
+    set(CMAKE_CXX_STANDARD 14)
+endif()
 
-catkin_python_setup()
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra)
+endif()
 
-include_directories(include)
-include_directories(${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
+include_directories(
+  include
+  ${sensor_msgs_INCLUDE_DIRS}
+  ${rclcpp_INCLUDE_DIRS})
 
-# add a library
-add_library(${PROJECT_NAME} src/pinhole_camera_model.cpp src/stereo_camera_model.cpp)
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
+if(NOT ANDROID)
+  add_subdirectory(python)
+endif()
 
-install(DIRECTORY include/${PROJECT_NAME}/
-        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/
-)
+add_subdirectory(src)
 
-install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-)
-
-# add tests
-if(CATKIN_ENABLE_TESTING)
+if(BUILD_TESTING)
   add_subdirectory(test)
 endif()
+
+ament_export_dependecies(OpenCV)
+
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+
+# add a library
+add_library(
+  ${PROJECT_NAME} 
+  src/pinhole_camera_model.cpp 
+  src/stereo_camera_model.cpp)
+
+target_link_libraries(
+  ${PROJECT_NAME} 
+  ${OpenCV_LIBRARIES})
+
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION include/${PROJECT_NAME}
+)
+
+ament_package()

@@ -39,7 +39,8 @@
 #include <memory>
 #include <regex>
 
-#include <opencv2/imgcodecs.hpp>
+//#include <opencv2/imgcodecs.hpp>
+#include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <sensor_msgs/image_encodings.hpp>

@@ -8,21 +8,22 @@
     interfaces ROS sensor_msgs/Image with OpenCV data types.
   </description>
   <author>Patrick Mihelich</author>
-  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
-  <license>BSD</license>
+  <maintainer email="brian.shin@lge.com">Brian Shin</maintainer>
+  <license>Apache License 2.0</license>
   <url>http://www.ros.org/wiki/image_geometry</url>
 
   <export>
     <rosdoc config="rosdoc.yaml" />
+    <build_type>ament_cmake</build_type>
   </export>
 
-  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
   <build_depend>opencv3</build_depend>
   <build_depend>sensor_msgs</build_depend>
 
   <exec_depend>opencv3</exec_depend>
-  <build_export_depend>sensor_msgs</build_export_depend>
+  <exec_depend>sensor_msgs</exec_depend>
 
   <doc_depend>dvipng</doc_depend>
   <doc_depend>texlive-latex-extra</doc_depend>
