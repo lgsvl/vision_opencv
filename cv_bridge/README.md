@@ -22,6 +22,7 @@ Since ros2 bases on python3, please make sure that python3-numpy is installed, o
 sudo apt install python3-numpy
 
 ```
+
 Now cv_bridge python backend still has dependency on python boost (equal or higer than 1.58.0), and install them as follows in Ubuntu 16.04:
 
 ```bash
