@@ -39,7 +39,6 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <sensor_msgs/msg/compressed_image.hpp>
 #include <sensor_msgs/image_encodings.hpp>
-//#include <ros/static_assert.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/imgproc/types_c.h>
