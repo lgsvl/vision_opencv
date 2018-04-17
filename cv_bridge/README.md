@@ -5,13 +5,13 @@ cv_bridge
 
 cv_bridge converts between ROS2 image messages and OpenCV image representation for perception applications. As follows:
 
-.. image:: http://wiki.ros.org/cv_bridge?action=AttachFile&do=get&target=cvbridge.png
+![cv_bridge overview](http://wiki.ros.org/cv_bridge?action=AttachFile&do=get&target=cvbridge.png)
 
 This ros2 branch initially derives from porting on the basis of [ros kinetic branch](https://github.com/ros-perception/vision_opencv/tree/kinetic/cv_bridge)
 
 # Installation
 
-Firstly, it assumes that the ros2 core has already been installed, please refer to [ROS2 installation](https://github.com/ros2/ros2/wiki/Installation) to get started if the ros2 core isn't ready to use
+Firstly, it assumes that the `ros2 core` has already been installed, please refer to [ROS2 installation](https://github.com/ros2/ros2/wiki/Installation) to get started if the `ros2 core` isn't ready to use
 
 ## Install dependencies
 OpenCV3 is a must to install, please refer to the official installation guide from [OpenCV Tutorials](http://docs.opencv.org/master/d9/df8/tutorial_root.html)
@@ -23,7 +23,7 @@ sudo apt install python3-numpy
 
 ```
 
-Now cv_bridge python backend still has dependency on python boost (equal or higer than 1.58.0), and install them as follows in Ubuntu 16.04:
+Now cv_bridge python backend still has dependency on python boost (`equal or higer than 1.58.0`), and install them as follows in Ubuntu 16.04:
 
 ```bash
 
@@ -53,4 +53,4 @@ ament test --skip-build --skip-install --only-packages cv_bridge
 ```
 
 # Known issues
-
+* `boost endian`: remove boost endian APIs with standard C++ 11 or higer instead 
