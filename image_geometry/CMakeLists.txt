@@ -16,6 +16,7 @@ find_package(OpenCV REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
 include_directories(include)
+add_subdirectory(src)
 
 # add a library
 add_library(${PROJECT_NAME}
