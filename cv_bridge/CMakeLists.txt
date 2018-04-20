@@ -17,7 +17,8 @@ if(NOT ANDROID)
   if(PYTHONLIBS_VERSION_STRING VERSION_LESS 3)
     find_package(Boost REQUIRED python)
   else()
-    find_package(Boost REQUIRED python)
+    #find_package(Boost REQUIRED python3)
+    find_package(Boost COMPONENTS "python-py35")
   endif()
 else()
   find_package(Boost REQUIRED )
@@ -28,8 +29,9 @@ find_package(OpenCV REQUIRED
   COMPONENTS
     opencv_core
     opencv_imgproc
-    #opencv_imgcodecs
+    opencv_imgcodecs
   CONFIG
+  PATHS /usr/local
 )
 
 include_directories(include)
